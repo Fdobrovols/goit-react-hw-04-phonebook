@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { Filter } from '../Filter/Filter';
 import { Contacts } from './Contacts/Contacts';
@@ -17,6 +18,11 @@ export class App extends Component {
 
   componentDidMount() {
     const storagedContacts = JSON.parse(localStorage.getItem('contacts'));
+    export const App = () => {
+      const [contacts, setContacts] = useState(
+        () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
+      );
+      const [filter, setFilter] = useState('');
 
     if (storagedContacts) this.setState({ contacts: storagedContacts });
   }
@@ -24,6 +30,7 @@ export class App extends Component {
   componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      setFilter(value);
     }
   }
 
@@ -36,6 +43,7 @@ export class App extends Component {
     };
     const isAlreadyInContacts = this.state.contacts.some(
       contact =>
+      const isAlreadyInContacts = contacts.some(
         contact.name.toLowerCase === name.toLowerCase() &&
         contact.name.toLowerCase() === name.toLowerCase() ||
         contact.number === number
@@ -43,6 +51,7 @@ export class App extends Component {
 
     if (isAlreadyInContacts) {
       alert(`${name} is already in contacts`);
+      const updateList = contacts => {
       return;
     }
 
@@ -56,7 +65,8 @@ export class App extends Component {
   onUpdateList = (contacts, filter) => {
     if (!filter.length) return contacts;
     const filteredUsers = contacts.filter(contact =>
-      nUpdateList = contacts => {
+      nUpdateList = contacts =>
+      setContacts(s => s.filter(contact => contact.id !== id)); {
         return contacts.filter(contact =>
       contact.name.toLowerCase().match(this.state.filter.toLowerCase())
     );
@@ -76,16 +86,15 @@ export class App extends Component {
     const { contacts } = this.state;
     const filteredContacts = this.onUpdateList(contacts);
     return (
-      <div>
-      <h1>Phonebook</h1>
-      <ContactForm onAddContact={this.addContact} />
-      <h2>Contacts</h2>
-      <Filter updateFilterValue={this.updateFilterValue} />
-      <Contacts
-        contacts={filteredContacts}
-        removeContact={this.removeContact}
-      />
-    </div>
+      <Phonebook>
+        <Title>Phonebook</Title>
+        <ContactForm onAddContact={addContact} />
+        <SubTitle>Contacts</SubTitle>
+        <Filter updateFilterValue={updateFilterValue} />
+        <Contacts contacts={updateList(contacts)} removeContact={removeContact} />
+      </Phonebook>
+    );
+  };
     );
   }
 }
