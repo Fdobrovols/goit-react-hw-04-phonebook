@@ -6,7 +6,9 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center; */
+
   margin-bottom: 32px;
+
   width: 100%;
 `;
 
@@ -14,7 +16,9 @@ export const Label = styled.label`
   display: block;
   margin-bottom: 10px;
   font-size: ${({ theme }) => theme.fontSizes.small};
+
   width: 100%;
+
   ${mq[0]} {
     margin: 0 auto;
     margin-bottom: 16px;
@@ -28,6 +32,7 @@ export const Input = styled.input`
   padding: 4px 8px;
   margin-top: 4px;
   width: 100%;
+
   font-size: ${({ theme }) => theme.fontSizes.small};
   border-radius: 4px;
   outline: none;
@@ -42,6 +47,7 @@ export const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.darkGrey};
   transition: ${({ theme }) =>
     `background-color ${theme.animation.duration} ${theme.animation.cubicBezier}`};
+
   :hover,
   :focus,
   :active {

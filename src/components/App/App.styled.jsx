@@ -6,6 +6,7 @@ export const Phonebook = styled.div`
   margin: 0 auto;
   width: 100%;
   text-align: left;
+
   ${mq[0]} {
     max-width: 500px;
     text-align: center;
@@ -14,6 +15,7 @@ export const Phonebook = styled.div`
 
 export const Title = styled.h1`
   margin-bottom: 32px;
+
   font-size: ${({ theme }) => theme.fontSizes.large};
 `;
 

@@ -1,29 +1,21 @@
-import { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Label, Input } from 'components/ContactForm/ContactForm.styled';
 
-export class Filter extends Component {
-  state = {
-    filter: '',
-  };
+export const Filter = ({ updateFilterValue }) => {
+  return (
+    <Label>
+      Find contacts by name
+      <Input
+        type="text"
+        name="filter"
+        title="Enter name or surname"
+        required
+        onChange={e => updateFilterValue(e.target.value)}
+      />
+    </Label>
+  );
+};
 
-  updateValue = e => {
-    this.setState({ filter: e.target.value });
-
-    this.props.updateFilterValue(e.target.value);
-  };
-
-  render() {
-    return (
-      <label>
-        Find contacts by name
-        <input
-          type="text"
-          name="filter"
-          title="Enter name or surname"
-          required
-          onChange={this.updateValue}
-          value={this.state.filter}
-        />
-      </label>
-    );
-  }
-}
+Filter.propTypes = {
+  updateFilterValue: PropTypes.func.isRequired,
+};
